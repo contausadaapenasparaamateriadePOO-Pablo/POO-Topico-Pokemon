@@ -1,30 +1,10 @@
-"""
-Módulo de definição da classe Pokemon.
-"""
-
-
 class Pokemon:
-    """
-    Classe que representa um Pokémon.
     
-    Attributes:
-        id (int): Identificador único do Pokémon na Pokédex.
-        nome (str): Nome do Pokémon.
-        tipo (str): Tipo do Pokémon (ex: Fogo, Água, Planta, etc).
-    """
-    
-    def __init__(self, id: int, nome: str, tipo: str):
-        """
-        Inicializa um novo Pokémon.
-        
-        Args:
-            id (int): Identificador único do Pokémon.
-            nome (str): Nome do Pokémon.
-            tipo (str): Tipo do Pokémon.
-        """
+    def __init__(self, id: int, nome: str, tipos: list[str]):
         self.id = id
         self.nome = nome
-        self.tipo = tipo
+        self.tipos = tipos
+        self.tipo = tipos[0] if tipos else "Desconhecido"
     
     def __repr__(self) -> str:
         """Representação em string do Pokémon."""
@@ -48,9 +28,44 @@ class Pokemon:
         Returns:
             Pokemon: Um novo Pokémon aleatório.
         """
-        import random
-        tipos = ["Fogo", "Água", "Planta", "Elétrico", "Normal"]
-        id_aleatorio = random.randint(1, 151)
-        nome = f"Pokemon_{id_aleatorio}"
-        tipo = random.choice(tipos)
-        return Pokemon(id_aleatorio, nome, tipo)
+        return Pokemon(id_aleatorio, nome, [tipo])
+
+
+class PokemonFogo(Pokemon):
+    def __init__(self, id: int, nome: str, tipos: list[str]):
+        super().__init__(id, nome, tipos)
+    
+    def ataque_especial(self) -> str:
+        return f"{self.nome} usa Chamas!"  # Ataque especial de fogo
+
+
+class PokemonAgua(Pokemon):
+    def __init__(self, id: int, nome: str, tipos: list[str]):
+        super().__init__(id, nome, tipos)
+    
+    def ataque_especial(self) -> str:
+        return f"{self.nome} usa Jato d'Água!"  # Ataque especial de água
+
+
+class PokemonPlanta(Pokemon):
+    def __init__(self, id: int, nome: str, tipos: list[str]):
+        super().__init__(id, nome, tipos)
+    
+    def ataque_especial(self) -> str:
+        return f"{self.nome} usa Folha Navalha!"  # Ataque especial de planta
+
+
+class PokemonEletrico(Pokemon):
+    def __init__(self, id: int, nome: str, tipos: list[str]):
+        super().__init__(id, nome, tipos)
+    
+    def ataque_especial(self) -> str:
+        return f"{self.nome} usa Choque do Trovão!"  # Ataque especial elétrico
+
+
+class PokemonNormal(Pokemon):
+    def __init__(self, id: int, nome: str, tipos: list[str]):
+        super().__init__(id, nome, tipos)
+    
+    def ataque_especial(self) -> str:
+        return f"{self.nome} usa Ataque Rápido!"  # Ataque especial normal

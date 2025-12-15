@@ -18,9 +18,18 @@ POO-Topico-Pokemon/
 └── README.md               # Este arquivo
 ```
 
-## 🎯 Classes Implementadas
+## �️ Pilares da Programação Orientada a Objetos (POO)
 
-### Pokemon
+Este projeto demonstra os quatro pilares fundamentais da POO:
+
+- **Encapsulamento**: Dados e comportamentos são encapsulados em classes (ex.: atributos privados em `Pokemon`).
+- **Abstração**: Interfaces simplificadas ocultam complexidades (ex.: métodos como `armazenar_pokemon()`).
+- **Herança**: Subclasses herdam da classe base (ex.: `PokemonFogo` herda de `Pokemon`).
+- **Polimorfismo**: Métodos sobrescritos em subclasses (ex.: `ataque_especial()` varia por tipo de Pokémon).
+
+## �🎯 Classes Implementadas
+
+### Pokemon (Classe Base)
 Representa um pokémon individual.
 
 **Atributos:**
@@ -29,7 +38,18 @@ Representa um pokémon individual.
 - `tipo` (str): Tipo (Fogo, Água, Planta, etc)
 
 **Métodos principais:**
-- `gerar_pokemon_aleatorio()`: Gera um pokémon aleatório para testes
+- `gerar_pokemon_aleatorio()`: Gera um pokémon aleatório
+
+### Herança: Subclasses de Pokémon
+Para demonstrar herança, foram criadas subclasses específicas para tipos principais:
+
+- **PokemonFogo**: Herda de `Pokemon`, com `ataque_especial()` que retorna "usa Chamas!"
+- **PokemonAgua**: Herda de `Pokemon`, com `ataque_especial()` que retorna "usa Jato d'Água!"
+- **PokemonPlanta**: Herda de `Pokemon`, com `ataque_especial()` que retorna "usa Folha Navalha!"
+- **PokemonEletrico**: Herda de `Pokemon`, com `ataque_especial()` que retorna "usa Choque do Trovão!"
+- **PokemonNormal**: Herda de `Pokemon`, com `ataque_especial()` que retorna "usa Ataque Rápido!"
+
+Isso exemplifica **herança** (subclasses herdam atributos e métodos da classe base) e **polimorfismo** (método `ataque_especial()` é sobrescrito em cada subclasse).
 
 ### Pokedex
 Gerencia o registro e captura de pokémons.
@@ -80,17 +100,17 @@ python main.py
 
 ### Adicionar Pokémons
 
-Edit a função `criar_pokedex_exemplo()` em `main.py`:
+Edit a função `criar_pokedex_global()` em `main.py`:
 
 ```python
-def criar_pokedex_exemplo() -> Pokedex:
+def criar_pokedex_global() -> Pokedex:
     pokedex = Pokedex()
     
     pokemons = [
-        Pokemon(1, "Bulbasaur", "Planta"),
-        Pokemon(4, "Charmander", "Fogo"),
+        criar_pokemon(1, "Bulbasaur", ["Grass"]),
+        criar_pokemon(4, "Charmander", ["Fire"]),
         # ADICIONE MAIS AQUI!
-        Pokemon(YOUR_ID, "SeuPokémon", "SeuTipo"),
+        criar_pokemon(YOUR_ID, "SeuPokémon", ["SeuTipo"]),
     ]
     
     for pokemon in pokemons:
@@ -110,7 +130,7 @@ pcbox = PCBox()
 treinador = Treinador("Seu Nome")
 
 # Adicionar pokémons à pokédex
-pokemon1 = Pokemon(1, "Meu Pokémon", "Fogo")
+pokemon1 = criar_pokemon(1, "Meu Pokémon", ["Fogo"])
 pokedex.adicionar_pokemon_registro(pokemon1)
 
 # Simular captura
@@ -129,28 +149,31 @@ treinador.consultar_pcbox(pcbox)
 3. **Registrar**: ID do pokémon é registrado na Pokédex
 4. **Consultar**: Treinador pode visualizar status via Pokédex e PCBox
 
+## 🎲 Sistema de Raridade na Captura
+
+A probabilidade de encontrar um Pokémon depende do seu ID na Pokédex:
+- **IDs 1-50**: Muito comum (peso 10) - Pokémon não evoluídos
+- **IDs 51-100**: Médio (peso 5) - Pokémon intermediários
+- **IDs 101+**: Muito raro (peso 0.5) - Pokémon totalmente evoluídos
+
+Isso torna os Pokémon lendários e totalmente evoluídos mais difíceis de capturar!
+
 ## 📊 Características Escaláveis
 
-✅ **Fácil Adição de Pokémons**: Apenas adicione objetos Pokemon à lista
-✅ **Múltiplos Treinadores**: Cada um tem sua própria Pokedex e PCBox
-✅ **Sistema de Caixas**: 18 caixas com 30 espaços cada (540 total)
-✅ **Rastreamento Eficiente**: Usa Dict e Set para busca O(1)
-✅ **Extensível**: Adicione novos tipos, métodos especiais, etc.
+- ✅ **Fácil Adição de Pokémons**: Apenas adicione objetos Pokemon à lista
+- ✅ **Múltiplos Treinadores**: Cada um tem sua própria Pokedex e PCBox
+- ✅ **Sistema de Caixas**: 18 caixas com 30 espaços cada (540 total)
+- ✅ **Rastreamento Eficiente**: Usa Dict e Set para busca O(1)
+- ✅ **Extensível**: Adicione novos tipos, métodos especiais, etc.
 
-## 💡 Ideias de Expansão
 
-- [ ] Tipos de ataque e fraquezas
-- [ ] Sistema de combate entre pokémons
-- [ ] Evolução de pokémons
-- [ ] Trades entre treinadores
-- [ ] Salvar/carregar dados em arquivo JSON
-- [ ] Interface gráfica (Tkinter/PyQt)
-- [ ] API REST para multiplayer
 
-## 📝 Licença
+## 🎮 Treinadores Pré-configurados
 
-Veja o arquivo LICENSE para mais detalhes.
+- **Ash** (Possui previamente alguns pokemons)
+- **Misty**
+
+
 
 ---
 
-**Desenvolvido com ❤️ usando Python 3.8+**
